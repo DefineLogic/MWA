@@ -1,0 +1,22 @@
+{
+    "name": "app17",
+    "version": "1.0.0",
+    "description": "This is my first express application",
+    "main": "app17.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node app18.js"
+    },
+    "keywords": [
+        "node",
+        "express"
+    ],
+    "author": "kamal ale",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.3"
+    },
+    "devDependencies": {
+        "mocha": "^9.2.2"
+    }
+}
