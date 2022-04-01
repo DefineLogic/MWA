@@ -1,4 +1,5 @@
 require("dotenv").config();
+require("./data/dbconnection").open();
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -14,10 +15,6 @@ app.use(function(req, res, next) {
 })
 
 app.use("/api", routes);
-
-app.get("/json", function(req, res) {
-    res.status(200).json("{'JSON data':true}")
-})
 
 app.use(express.static(path.join(__dirname, "public")));
 
