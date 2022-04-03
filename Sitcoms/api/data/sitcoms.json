@@ -1,0 +1,111 @@
+[{
+        "title": "Friends",
+        "aired": "1994-2004",
+        "imdbRating": 9,
+        "totalSeasons": 10,
+        "totalEpisodes": 236,
+        "production": {
+            "productionTitle": "Warner Bros. Studios",
+            "location": "Burbank, California, USA"
+        }
+    },
+    {
+        "title": "Seinfeld",
+        "aired": "1989-1989",
+        "imdbRating": 8.9,
+        "totalSeasons": 9,
+        "totalEpisodes": 180,
+        "production": {
+            "productionTitle": "Castle Rock Entertainment",
+            "location": "Beverly Hills, California, USA"
+        }
+    },
+    {
+        "title": "Big Bang Theory",
+        "aired": "2019-Present",
+        "imdbRating": 8.2,
+        "totalSeasons": 12,
+        "totalEpisodes": 279,
+        "production": {
+            "productionTitle": "Warner Bros. Studios",
+            "location": "Burbank, California, USA"
+        }
+    },
+    {
+        "title": "The Simpsons",
+        "aired": "1989-Present",
+        "imdbRating": 8.7,
+        "totalSeasons": 22,
+        "totalEpisodes": 722,
+        "production": {
+            "productionTitle": "Gracie Films",
+            "location": "Culver City, California, USA"
+        }
+    },
+    {
+        "title": "The Office",
+        "aired": "2005-Present",
+        "imdbRating": 9,
+        "totalSeasons": 10,
+        "totalEpisodes": 236,
+        "production": {
+            "productionTitle": "3 Arts Entertainment",
+            "location": "Beverly Hills, California, USA"
+        }
+    },
+    {
+        "title": "Rick And Morty",
+        "aired ": "2013-Present",
+        "imdbRating": 9.2,
+        "totalSeasons": 5,
+        "totalEpisodes": 51,
+        "production": {
+            "productionTitle": "Williams Street",
+            "location": "Atlanta , Georgia, USA"
+        }
+    },
+    {
+        "title": "How I Met Your Mother",
+        "aired": "2005-2014",
+        "imdbRating": 8.4,
+        "totalSeasons": 9,
+        "totalEpisodes": 208,
+        "production": {
+            "productionTitle": "20th Century Fox",
+            "location": "Los Angeles, California, USA"
+        }
+    },
+    {
+        "title": "Brooklyn Nine-Nine",
+        "aired": "2013-2021",
+        "imdbRating": 8.5,
+        "totalSeasons": 8,
+        "totalEpisodes": 153,
+        "production": {
+            "productionTitle": "Fermulon",
+            "location": "Los Angeles, California, USA"
+        }
+    },
+    {
+        "title": "Two And A Half Men",
+        "aired": "2003-2015",
+        "imdbRating": 7.1,
+        "totalSeasons": 12,
+        "totalEpisodes": 262,
+        "production": {
+            "productionTitle": "Warner Bros",
+            "location": "Burbank, California, USA"
+        }
+    },
+    {
+        "title": "The IT Crowd",
+        "aired": "2006-2013",
+        "imdbRating": 8.6,
+        "totalSeasons": 4,
+        "totalEpisodes": 25,
+        "production": {
+            "productionTitle": "Talkback Thames",
+            "location": "London, England, UK"
+        }
+    }
+]
