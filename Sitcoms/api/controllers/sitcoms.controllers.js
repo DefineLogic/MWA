@@ -16,7 +16,7 @@ module.exports.sitcomsAddOne = function (req, res) {
     Sitcom.create(newSitcom, function (err, sitcom) {
         const response = {status: 201, message: sitcom};
         if (err) {
-            console.log("Error creating sitcom");
+            console.log("Error creating sitcom",err);
             response.status = 500;
             response.message = err;
         }
@@ -27,8 +27,8 @@ module.exports.sitcomsGetAll = function (req, res) {
     console.log("Get All Sitcoms called.")
     const response = {status: 200, message: []}
     let offset = 0;
-    let count = 1;
-    let maxCount = 2;
+    let count = 20;
+    let maxCount = 20;
     if (req.query && req.query.offset) {
         offset = parseInt(req.query.offset, 10);
     }
@@ -45,7 +45,7 @@ module.exports.sitcomsGetAll = function (req, res) {
         res.status(400).json({error: "Count or Offset is not a number."});
     }
     console.log("offset count", offset, count);
-    Sitcom.find().skip(offset).limit().exec(function(err,sitcoms){
+    Sitcom.find().skip(offset).limit(count).exec(function(err,sitcoms){
         if(err){
             console.log("Error:",err);
             response.staus = 500;

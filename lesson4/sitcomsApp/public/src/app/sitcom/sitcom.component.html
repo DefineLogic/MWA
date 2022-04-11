@@ -1,0 +1,11 @@
+<H1>{{sitcom.title}}</H1>
+<br/> Aired: {{sitcom.aired}}
+<br/> ImdbRating: {{sitcom.imdbRating}}/10
+<br/> Total Seasons: {{sitcom.totalSeasons}}
+<br> Total Episodes: {{sitcom.totalEpisodes}}
+<h4>Production:</h4>
+<span class="tab"></span>Production Title: {{sitcom.production.productionTitle}}
+<br> <span class="tab"></span> Location: {{sitcom.production.location}}
+<br>
+<br>
+<button class="btn btn-primary btn-sm" routerLink="/sitcoms/update/{{sitcom._id}}">Edit Details</button>

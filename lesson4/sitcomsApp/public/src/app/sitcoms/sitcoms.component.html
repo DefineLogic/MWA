@@ -1,0 +1,13 @@
+<h3>List of Sitcoms</h3>
+
+<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for sitcom">
+<br>
+<br>
+<ul>
+    <li *ngFor="let sitcom of sitcoms | filter:searchText">
+        <a routerLink="/sitcoms/{{sitcom._id}}">
+            {{sitcom.title}}
+        </a>
+        <button class="btn btn-danger btn-sm" (click)="onDelete(sitcom._id)">Delete</button>
+    </li>
+</ul>

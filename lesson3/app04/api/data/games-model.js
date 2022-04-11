@@ -3,7 +3,8 @@ const mongoose = require("mongoose")
 const publisher = mongoose.Schema({
     name: { type: String, required: true },
     country: { type: String },
-    established: { type: Number }
+    established: { type: Number },
+    location: { type: [Number], index: "2dsphere" } //longitude(E/W), latitude(N/S)
 })
 const GameSchema = mongoose.Schema({
     title: { type: String, required: true },

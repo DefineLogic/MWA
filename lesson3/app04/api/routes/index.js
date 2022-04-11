@@ -1,15 +1,24 @@
 const express = require("express");
 const router = express.Router();
 const gamesController = require("../controllers/games.controllers")
+const publisherController = require("../controllers/publisher.controller")
 
+
+router.route("/gamesGeo").get(gamesController.findByGeoocation)
 router.route("/games")
     .get((req, res) => gamesController.getAll(req, res))
     .post(gamesController.addGame)
 
 
-router.route("/games/:gameId").get(gamesController.getOne).delete(gamesController.deleteGame)
+router.route("/games/:gameId")
+    .get(gamesController.getOne)
+    .delete(gamesController.deleteGame)
+    .put(gamesController.fullUpdateOne)
+    .patch(gamesController.partialUpdateOne)
 
-router.route("/games/:gameId/publisher").get(gamesController.getPublisher)
+router.route("/games/:gameId/publisher")
+    .get(publisherController.getPublisher)
+    .post(publisherController.addOne)
 
 
 
