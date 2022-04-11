@@ -4,6 +4,9 @@
     "description": "sitcoms api",
     "main": "index.js",
     "scripts": {
+        "startFrontEnd": "cd public && ng serve",
+        "startBackEnd": "node index.js",
+        "startBoth": "npm-run-all --parallel startFrontEnd startBackEnd",
         "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
