@@ -1,10 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-class Credentials {
+export class Credentials {
+  name!:string;
   username!:string;
   password!:string;
-  constructor(username:string,password:string){
+  constructor(name:string,username:string,password:string){
+    this.name = name;
     this.password = password;
     this.username = username;
   }
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
   loginForm!:NgForm;
 
   constructor() { 
-    this.credentials = new Credentials("Jack","Harper");
+    this.credentials = new Credentials("Jack Harper","Jack","Harper");
   }
 
   ngOnInit(): void {

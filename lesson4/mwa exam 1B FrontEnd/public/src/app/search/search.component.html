@@ -1,0 +1,28 @@
+<p>Search Page!</p>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit(searchForm)">
+    <div>
+        <label>
+            Latitude:
+        </label>
+        <input formControlName="latitude">
+    </div>
+    <div>
+        <label>
+            Longitude:
+        </label>
+        <input formControlName="longitude">
+    </div>
+    <div>
+        <label>
+            Distance:
+        </label>
+        <input formControlName="distance">
+    </div>
+    <button type="submit">Search</button>
+</form>
+
+<ul>
+    <li *ngFor="let ship of ships">
+        {{ship._id}}
+    </li>
+</ul>

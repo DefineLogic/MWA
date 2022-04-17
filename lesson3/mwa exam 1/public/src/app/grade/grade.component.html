@@ -1,0 +1,9 @@
+<h1>Grade Page
+</h1>
+<br> Student ID: {{grade.student_id}}
+<br> Class ID: {{grade.class_id}}
+<ul>
+    <li *ngFor="let each of grade.scores">
+        {{each.type}} :: {{each.score}}
+    </li>
+</ul>

@@ -1,0 +1,19 @@
+Timers - timeout , interval 
+Pending  Callbacks - less important tasks like tcp ip requests
+Idle - used by node framework internally 
+Poll - i/o operations / mongoose , readfile
+Check - set immediate 
+Close Callbacks - close callbacks
+
+7> Next Tick Queue -- process.nextTick(f1)
+9> Micro Task Queue   (in v8 ,added in node v11)  queue.microTask(f1)
+1 iterration over all the queues in the event loop 
+TICKKKKKK
+
+LibUV - works independent of event loop and v8 . adds callbacks to the poll queue 
+
+REPL - Read, Evaluate, Print, Loop 
+
+
+
+

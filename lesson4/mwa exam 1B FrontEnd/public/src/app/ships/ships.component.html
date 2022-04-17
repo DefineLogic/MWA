@@ -1,0 +1,15 @@
+The list of Ships are:<br/> Counts:
+<!-- <mat-select [(value)]="selected">
+    <mat-option value="5">5</mat-option>
+    <mat-option value="10">10</mat-option>
+    <mat-option value="20">15</mat-option>
+</mat-select> -->
+
+<ul>
+    <li *ngFor="let ship of ships">
+        <a routerLink="{{ship._id}}">{{ship.depth}} - {{ship.coordinates}}</a>
+    </li>
+</ul>
+<br>
+<button (click)="onPrevious()">Previous</button>
+<button (click)="onNext()">Next</button>

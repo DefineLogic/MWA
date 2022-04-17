@@ -1,4 +1,3 @@
-const gamesData = require("../data/games.json");
 require("../data/games-model")
 const mongoose = require("mongoose");
 const Game = mongoose.model(process.env.GAME_MODEL);
@@ -49,6 +48,24 @@ module.exports.getAll = function(req, res) {
 
 module.exports.getOne = function(req, res) {
     var response = {};
+    console.log("GetOne promise controller called", req.params.gameId);
+    const gameId = req.params.gameId;
+    let valid = mongoose.isValidObjectId(gameId);
+    if (!valid) {
+        res.status(400).json({ err: 'not valid id' });
+        return;
+    }
+    Game.findById(gameId).exec().then(game => {
+        response.status = 200;
+        response.message = game;
+    }).catch(err => {
+        response.status = 500;
+        response.message = err;
+    }).finally(() => res.status(response.status).json(response.message));
+}
+
+module.exports.getOneNoPromise = function(req, res) {
+    var response = {};
     console.log("GetOne controller called", req.params.gameId);
     const gameId = req.params.gameId;
     let valid = mongoose.isValidObjectId(gameId);
@@ -74,6 +91,7 @@ module.exports.getOne = function(req, res) {
         res.status(response.status).json(response.message);
     })
 }
+
 
 
 module.exports.deleteGame = function(req, res) {
