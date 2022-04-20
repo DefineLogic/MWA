@@ -1,0 +1,5 @@
+.validationError {
+    font-style: italic;
+    color: red;
+    font-weight: bold;
+}

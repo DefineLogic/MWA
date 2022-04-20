@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SitcomsDataService } from '../sitcoms-data-service.service';
-import { Sitcom } from '../sitcoms/sitcoms.component';
+import { Form, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsersService } from '../users.service';
+import { Credentials } from '../login/login.component';
+
 
 @Component({
   selector: 'app-register',
@@ -11,7 +11,10 @@ import { Sitcom } from '../sitcoms/sitcoms.component';
 })
 export class RegisterComponent implements OnInit {
 
+  hasSuccess = false;
+  hasError = false;
   registrationForm!: FormGroup;
+  credentials !: Credentials;
   // constructor() { 
   //   this.registrationForm = new FormGroup({
   //     name: new FormControl("Jack"),
@@ -22,15 +25,12 @@ export class RegisterComponent implements OnInit {
   //   });
   // }
 
-  constructor(private formBuilder:FormBuilder,private sitcomService:SitcomsDataService,private router:Router) { 
+  constructor(private formBuilder:FormBuilder, private userService:UsersService) { 
     this.registrationForm = this.formBuilder.group({
-      title: "",
-      aired: "",
-      imdbRating:"",
-      totalSeasons: "",
-      totalEpisodes: "",
-      pTitle: "",
-      pLocation: ""
+      name: ["",Validators.required],
+      username: "",
+      password: "",
+      repeatPassword: ""
     });
   }
 
@@ -40,35 +40,24 @@ export class RegisterComponent implements OnInit {
   register(registrationForm:FormGroup){
     console.log("Form Submitted");
     console.log(registrationForm.value);
-    const newSitcom = {
-      "title":registrationForm.value.title,
-      "aired":registrationForm.value.aired,
-      "imdbRating":registrationForm.value.imdbRating,
-      "totalSeasons":registrationForm.value.totalSeasons,
-      "totalEpisodes":registrationForm.value.totalEpisodes
+    const users = {
+      name: registrationForm.value.name,
+      username: registrationForm.value.username,
+      password: registrationForm.value.password,
     }
-    const newProduction = {
-      "productionTitle":registrationForm.value.pTitle,
-      "location":registrationForm.value.pLocation
-    }
-    this.sitcomService.createSitcom(newSitcom).subscribe({
-             next: (data) => {
-              console.log("Data added",data);
-              this.sitcomService.createProduction(newProduction,data._id).subscribe({
-                next: (data) => { 
-                  alert("Sitcom created successfully.")
-                },
-                error: err=>console.log(),
-                complete: ()=>{
-                  this.router.navigate(["sitcoms/",data._id]);
-                }
-              })
-        },
-        error: err => console.log("Service Error:", err),
-        complete: () => {
-      }
-    })
+    // this.userService.addUser(users).subscribe(
+    //   data=>{alert("Added user successfully.")
+    //     console.log(data);},
+    //   err=>{console.log(err)},
+    //   ()=>{}
+    // );
+    this.userService.registerUser(users).then(data=>{
+      console.log("Registered User",data)
+      this.credentials = data;
+      this.hasSuccess = true
+    });
   
   }
+
 
 }

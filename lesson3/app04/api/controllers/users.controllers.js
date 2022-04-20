@@ -5,7 +5,6 @@ const User = mongoose.model(process.env.USER_MODEL);
 const bcrypt = require("bcrypt")
 
 module.exports.addUser = function(req, res) {
-
     console.log("User AddOne request");
     const response = { status: 201, message: {} }
     if (req && req.body && req.body.username && req.body.password) {
@@ -52,6 +51,33 @@ _createUser = function(req, res, response, err, hashedPassword) {
             .finally(() => _sendResponse(res, response));
     }
 }
+
+
+module.exports.loginUser = function(req, res) {
+    console.log("Login user called.")
+    let username = req.body.username;
+    let password = req.body.password;
+
+}
+
+_checkUserPassword = function(user, req, response) {
+    if (!user) {
+        console.log("Username not in the database;")
+        response.status(401);
+        response.message = "Unauthorized.";
+    }
+    if (bcrypt.compareSync(req.body.password, user.password)) {
+        console.log("Login done.");
+        response.status(401);
+        response.message = "success";
+    } else {
+        console.log("Password Incorrect done.");
+        response.status(401);
+        response.message = "Unauthorized.";
+    }
+}
+
+
 _sendResponse = function(res, response) {
     res.status(response.status).json(response.message);
 }

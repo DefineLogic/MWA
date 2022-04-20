@@ -1,47 +1,39 @@
-<h3>Enter new Sitcom Details</h3>
 <form [formGroup]="registrationForm" (ngSubmit)="register(registrationForm)">
     <div>
         <label>
-            Title:
+            Name:
         </label>
-        <input formControlName="title">
+        <input formControlName="name" placeholder="Name">
+    </div>
+    <div *ngIf="registrationForm.controls['name'].invalid && registrationForm.controls['name'].touched" class="validationError">
+        <div *ngIf="registrationForm.controls['name'].errors?.['required']">
+            Name is required.
+        </div>
     </div>
     <div>
         <label>
-            Aired:
+            UserName:
         </label>
-        <input formControlName="aired">
+        <input formControlName="username" placeholder="username">
     </div>
     <div>
         <label>
-            ImdbRating:
+            Password:
         </label>
-        <input formControlName="imdbRating">
+        <input formControlName="password" type="password" placeholder="Password">
     </div>
     <div>
         <label>
-            Total Seasons:
+            Repeat Password:
         </label>
-        <input formControlName="totalSeasons">
+        <input formControlName="repeatPassword" type="password" placeholder="Password">
     </div>
-    <div>
-        <label>
-            Total Episodes:
-        </label>
-        <input formControlName="totalEpisodes">
-    </div>
-    <h4>Production</h4>
-    <div>
-        <label>
-            Production Title:
-        </label>
-        <input formControlName="pTitle">
-    </div>
-    <div>
-        <label>
-            Production Location:
-        </label>
-        <input formControlName="pLocation">
-    </div>
-    <button type="submit" class="btn-success">Add</button>
+    <button type="submit">Register</button>
 </form>
+
+<div *ngIf="hasSuccess" class="alert alert-success">
+    <p>User Created Successfully.</p>
+</div>
+<div *ngIf="hasError" class="alert alert-danger">
+    <p>Error;</p>
+</div>

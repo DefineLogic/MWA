@@ -21,7 +21,11 @@ export class NavigationComponent implements OnInit {
     this._router.navigate(["sitcoms"]);
   }
 
-  onRegister():void{
+  onAddSitcom():void{
+    this._router.navigate(["addsitcom"]);
+  }
+
+  onRegisterUser():void{
     this._router.navigate(["register"]);
   }
 

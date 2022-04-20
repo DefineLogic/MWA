@@ -1,0 +1,47 @@
+<h3>Enter new Sitcom Details</h3>
+<form [formGroup]="addSitcomForm" (ngSubmit)="addSitcom(addSitcomForm)">
+    <div>
+        <label>
+            Title:
+        </label>
+        <input formControlName="title">
+    </div>
+    <div>
+        <label>
+            Aired:
+        </label>
+        <input formControlName="aired">
+    </div>
+    <div>
+        <label>
+            ImdbRating:
+        </label>
+        <input formControlName="imdbRating">
+    </div>
+    <div>
+        <label>
+            Total Seasons:
+        </label>
+        <input formControlName="totalSeasons">
+    </div>
+    <div>
+        <label>
+            Total Episodes:
+        </label>
+        <input formControlName="totalEpisodes">
+    </div>
+    <h4>Production</h4>
+    <div>
+        <label>
+            Production Title:
+        </label>
+        <input formControlName="pTitle">
+    </div>
+    <div>
+        <label>
+            Production Location:
+        </label>
+        <input formControlName="pLocation">
+    </div>
+    <button type="submit" class="btn-success">Add</button>
+</form>

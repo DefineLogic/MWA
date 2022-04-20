@@ -44,9 +44,31 @@ module.exports.getAll = function(req, res) {
         //     res.status(200).json(games);
         // })
 }
-
-
 module.exports.getOne = function(req, res) {
+    var response = {};
+    console.log("GetOne promise controller called", req.params.gameId);
+    const gameId = req.params.gameId;
+    let valid = mongoose.isValidObjectId(gameId);
+    if (!valid) {
+        res.status(400).json({ err: 'not valid id' });
+        return;
+    }
+    _getOneAsyncAwait(res, response, gameId);
+}
+
+_getOneAsyncAwait = async function(res, response, gameId) {
+    const game = await Game.findById(gameId);
+    if (game) {
+        response.status = 200;
+        response.message = game;
+    } else {
+        response.status = 500;
+        response.message = { message: "No game found for givenId" }
+    }
+    res.status(response.status).json(response.message)
+}
+
+module.exports.getOnePromise = function(req, res) {
     var response = {};
     console.log("GetOne promise controller called", req.params.gameId);
     const gameId = req.params.gameId;

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UsersService } from '../users.service';
+import { Credentials } from '../login/login.component';
+
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,10 @@ import { UsersService } from '../users.service';
 })
 export class RegisterComponent implements OnInit {
 
+  hasSuccess = false;
+  hasError = false;
   registrationForm!: FormGroup;
+  credentials !: Credentials;
   // constructor() { 
   //   this.registrationForm = new FormGroup({
   //     name: new FormControl("Jack"),
@@ -40,12 +45,18 @@ export class RegisterComponent implements OnInit {
       username: registrationForm.value.username,
       password: registrationForm.value.password,
     }
-    this.userService.addUser(users).subscribe(
-      data=>{alert("Added user successfully.")
-        console.log(data);},
-      err=>{console.log(err)},
-      ()=>{}
-    );
+    // this.userService.addUser(users).subscribe(
+    //   data=>{alert("Added user successfully.")
+    //     console.log(data);},
+    //   err=>{console.log(err)},
+    //   ()=>{}
+    // );
+    this.userService.registerUser(users).then(data=>{
+      console.log("Registered User",data)
+      this.credentials = data;
+      this.hasSuccess = true
+    });
+  
   }
 
 

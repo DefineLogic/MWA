@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  rest_api_users_base_url:"The base URL for Users API",
+  rest_api_register_base_url:"The base URL to register a new User"
 };
 
 /*

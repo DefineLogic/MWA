@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  token_storage_key:"gamesToken",
 };

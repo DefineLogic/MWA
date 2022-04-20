@@ -25,3 +25,10 @@
     </div>
     <button type="submit">Register</button>
 </form>
+
+<div *ngIf="hasSuccess" class="alert alert-success">
+    <p>User Created Successfully.</p>
+</div>
+<div *ngIf="hasError" class="alert alert-danger">
+    <p>Error;</p>
+</div>

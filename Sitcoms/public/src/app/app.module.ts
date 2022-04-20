@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 
 import { AppComponent } from './app.component';
@@ -11,11 +11,14 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 
-import { RegisterComponent } from './register/register.component';
+import { AddSitcomComponent } from './addSitcom/addSitcom.component';
 import { SitcomsComponent } from './sitcoms/sitcoms.component';
 import { SitcomComponent } from './sitcom/sitcom.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EditComponent } from './edit/edit.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -23,10 +26,12 @@ import { EditComponent } from './edit/edit.component';
     NavigationComponent,
     FooterComponent,
     HomeComponent,
-    RegisterComponent,
+    AddSitcomComponent,
     SitcomsComponent,
     SitcomComponent,
-    EditComponent
+    EditComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +39,7 @@ import { EditComponent } from './edit/edit.component';
     HttpClientModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
+    JwtHelperService,
     RouterModule.forRoot([
       {
       path:"",
@@ -55,12 +61,16 @@ import { EditComponent } from './edit/edit.component';
   }
    ,    
     {
-     path:"register",
-     component:RegisterComponent
-   }
+     path:"addsitcom",
+     component:AddSitcomComponent
+   },    
+   {
+    path:"register",
+    component:RegisterComponent
+  }
   ])
   ],
-  providers: [],
+  providers: [{provide:JWT_OPTIONS,useValue:JWT_OPTIONS}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -26,8 +26,6 @@ app.use(function(req, res, next) {
 
 app.use("/api", routes);
 
-
-
 app.use(express.static(path.join(__dirname, "public")));
 
 const server = app.listen(process.env.PORT, function() {
