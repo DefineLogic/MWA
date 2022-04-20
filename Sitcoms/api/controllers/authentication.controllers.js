@@ -22,7 +22,7 @@ module.exports.authenticateCallback = function(req, res, next) {
             }
         })
     } else {
-        res._sendResponse(() => res, response);
+        _sendResponse(res, response);
     }
 }
 
@@ -38,7 +38,7 @@ module.exports.authenticate = function(req, res, next) {
             .then(() => { next(); })
             .catch(err => _invalidAuthorisationToken(err, response))
     } else {
-        res._sendResponse(() => res, response);
+        _sendResponse(res, response);
     }
 }
 
@@ -56,7 +56,7 @@ module.exports.authenticateAysncUse = async function(req, res, next) {
                 next();
             }
         } else {
-            res._sendResponse(() => res, response);
+            _sendResponse(res, response);
         }
     } catch (err) {
         _invalidAuthorisationToken(err, response);
