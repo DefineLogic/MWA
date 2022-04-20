@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken")
 const util = require("util")
 
-const jwtVerifyPromise = util.promisify(jwt.verify, { context: jwt });
 
 module.exports.authenticateCallback = function(req, res, next) {
     const response = {
@@ -34,7 +33,8 @@ module.exports.authenticate = function(req, res, next) {
     const headerExists = req.headers.authorization;
     if (headerExists) {
         const token = req.headers.authorization.split(" ")[1];
-        jwt.verify(token, process.env.JWT_PASSWORD)
+        const jwtVerifyPromise = util.promisify(jwt.verify, { context: jwt });
+        jwtVerifyPromise(token, process.env.JWT_PASSWORD)
             .then(() => { next(); })
             .catch(err => _invalidAuthorisationToken(err, response))
     } else {
