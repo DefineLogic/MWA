@@ -1,3 +1,5 @@
+<h3>Add New User</h3>
+
 <form [formGroup]="registrationForm" (ngSubmit)="register(registrationForm)">
     <div>
         <label>
@@ -16,11 +18,21 @@
         </label>
         <input formControlName="username" placeholder="username">
     </div>
+    <div *ngIf="registrationForm.controls['username'].invalid && registrationForm.controls['username'].touched" class="validationError">
+        <div *ngIf="registrationForm.controls['username'].errors?.['required']">
+            UserName is required.
+        </div>
+    </div>
     <div>
         <label>
             Password:
         </label>
         <input formControlName="password" type="password" placeholder="Password">
+    </div>
+    <div *ngIf="registrationForm.controls['password'].invalid && registrationForm.controls['password'].touched" class="validationError">
+        <div *ngIf="registrationForm.controls['password'].errors?.['required']">
+            Password is required.
+        </div>
     </div>
     <div>
         <label>
@@ -28,7 +40,12 @@
         </label>
         <input formControlName="repeatPassword" type="password" placeholder="Password">
     </div>
-    <button type="submit">Register</button>
+    <div *ngIf="registrationForm.controls['repeatPassword'].invalid && registrationForm.controls['repeatPassword'].touched" class="validationError">
+        <div *ngIf="registrationForm.controls['repeatPassword'].errors?.['required']">
+            Password is required.
+        </div>
+    </div>
+    <button class="btn btn-primary btn-sm" type="submit">Register</button>
 </form>
 
 <div *ngIf="hasSuccess" class="alert alert-success">

@@ -8,6 +8,6 @@
         <a routerLink="/sitcoms/{{sitcom._id}}">
             {{sitcom.title}}
         </a>
-        <button class="btn btn-danger btn-sm" (click)="onDelete(sitcom._id)">Delete</button>
+        <button *ngIf="isLoggedIn()" class="btn btn-danger btn-sm" (click)="onDelete(sitcom._id)">Delete</button>
     </li>
 </ul>

@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { EditComponent } from './edit/edit.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { LoginComponent } from './login/login.component';
     SitcomComponent,
     EditComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +41,6 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     ReactiveFormsModule,
     Ng2SearchPipeModule,
-    JwtHelperService,
     RouterModule.forRoot([
       {
       path:"",
@@ -67,10 +68,14 @@ import { LoginComponent } from './login/login.component';
    {
     path:"register",
     component:RegisterComponent
+  },
+  {
+    path:"**",
+    component:ErrorComponent
   }
   ])
   ],
-  providers: [{provide:JWT_OPTIONS,useValue:JWT_OPTIONS}],
+  providers: [{provide:JWT_OPTIONS,useValue:JWT_OPTIONS},JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

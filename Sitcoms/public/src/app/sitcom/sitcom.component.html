@@ -8,4 +8,4 @@
 <br> <span class="tab"></span> Location: {{sitcom.production.location}}
 <br>
 <br>
-<button class="btn btn-primary btn-sm" routerLink="/sitcoms/update/{{sitcom._id}}">Edit Details</button>
+<button *ngIf="isLoggedIn()" class="btn btn-primary btn-sm" routerLink="/sitcoms/update/{{sitcom._id}}">Edit Details</button>

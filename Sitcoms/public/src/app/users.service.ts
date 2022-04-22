@@ -13,17 +13,17 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
 
-  // public addUser(newUser: Credentials): Observable<Credentials> {
-  //   return this.http.post<Credentials>(this.baseUrl + '/users', newUser);
-  // }
+  public addUser(newUser: Credentials): Observable<Credentials> {
+    return this.http.post<Credentials>(this.baseUrl + '/users', newUser);
+  }
 
   
   public registerUser(newUser: Credentials): Promise<Credentials> {
     return this.http.post<Credentials>(this.baseUrl + '/users', newUser).toPromise().catch(this.handleError);
   }
 
-public login(user:Credentials):Observable<any>{
-  return this.http.post<any>(this.baseUrl + '/users', user);
+public login(userCredentials:Credentials):Observable<any>{
+  return this.http.post<any>(this.baseUrl + '/users/login', userCredentials);
 }
 
   private handleError(error: any):Promise<any> {

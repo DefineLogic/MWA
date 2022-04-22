@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { response } from 'express';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from '../authentication.service';
 import { UsersService } from '../users.service';
 
 export class Credentials {
@@ -16,6 +17,18 @@ export class Credentials {
   }
 }
 
+export class UserToken{
+  #success!:boolean;
+  #token!:string;
+
+  get success(){ return this.#success;}
+  get token(){ return this.#token;}
+  set success(success:boolean){ this.#success = this.success;}
+  set token(token:string){ this.token = this.token;}
+
+
+}
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,21 +36,20 @@ export class Credentials {
 })
 export class LoginComponent implements OnInit {
 
+  isLoggedIn!:boolean;
   credentials!:Credentials;
   #name!:string;
+  unAuthorised!:boolean;
 
-  set name(name){this.#name = name};
-  get name(){
-    const token:string = localStorage.getItem(environment.token_storage_key) as string;
-    this.#name = this._jwtHelperService.decodeToken(token).name;
-    return this.#name};
+  set name(name){this.#name = name;}
+  get name(){return this.#name;}
 
 
   @ViewChild('loginForm')
   loginForm!:NgForm;
 
-  constructor(private _userService:UsersService, private _jwtHelperService:JwtHelperService) { 
-    this.credentials = new Credentials("Jack Harper","Jack","Harper");
+  constructor(private _userService:UsersService, private _jwtHelperService:JwtHelperService, private _authService:AuthenticationService) { 
+    this.credentials = new Credentials("","","");
   }
 
   ngOnInit(): void {
@@ -50,12 +62,27 @@ export class LoginComponent implements OnInit {
 
   login(loginForm:NgForm){
     console.log("login method");
-    console.log(loginForm.value);
-     const newCredentials = new Credentials("",this.loginForm.value.username, this.loginForm.value.password);
-    this._userService.login()
-    localStorage.setItem(environment.token_storage_key,loginResponse.token)
-    const token:string = localStorage.getItem(environment.token_storage_key) as string;
-    this.name = this._jwtHelperService.decodeToken(token).name;
+    console.log(loginForm.value.username);
+     const loginCredentials = new Credentials("",this.loginForm.value.username, this.loginForm.value.password);
+    this._userService.login(loginCredentials).subscribe({
+      next:(userToken)=>{
+        console.log("Token fetched",userToken)
+        this._authService.userToken = userToken;
+        this.isLoggedIn = this._authService.isLoggedIn;
+        this.name = this._authService.name;
+        this.unAuthorised = false;
+      },
+      error:(err)=>{
+        console.log("Error",err)
+        this.unAuthorised = true;
+      },
+      complete:()=>{}
+    });
+  }
+
+  onLogOut(){
+    this._authService.deleteToken();
+    this.isLoggedIn = this._authService.isLoggedIn;
   }
 
 }

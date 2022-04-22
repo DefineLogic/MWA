@@ -3,8 +3,8 @@
         <div>
             <button (click)="onHome()">Home</button>
             <button (click)="onSitcoms()">Sitcoms</button>
-            <button (click)="onAddSitcom()">Add Sitcom</button>
-            <button (click)="onRegisterUser()">Register User</button>
+            <button *ngIf="isLoggedIn()" (click)="onAddSitcom()">Add Sitcom</button>
+            <button *ngIf="!isLoggedIn()" (click)="onRegisterUser()">Register User</button>
         </div>
         <app-login class="nav navbar-nav navbar-right"></app-login>
     </div>

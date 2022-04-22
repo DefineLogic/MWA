@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {FormBuilder, FormGroup } from '@angular/forms';
+import {  Router } from '@angular/router';
 import { SitcomsDataService } from '../sitcoms-data-service.service';
-import { Sitcom } from '../sitcoms/sitcoms.component';
 
 @Component({
   selector: 'app-addSitcom',
@@ -10,7 +9,6 @@ import { Sitcom } from '../sitcoms/sitcoms.component';
   styleUrls: ['./addSitcom.component.css']
 })
 export class AddSitcomComponent implements OnInit {
-
   addSitcomForm!: FormGroup;
   // constructor() { 
   //   this.registrationForm = new FormGroup({
@@ -35,6 +33,7 @@ export class AddSitcomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
   addSitcom(sitcomForm:FormGroup){

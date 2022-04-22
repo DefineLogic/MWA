@@ -28,9 +28,9 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private userService:UsersService) { 
     this.registrationForm = this.formBuilder.group({
       name: ["",Validators.required],
-      username: "",
-      password: "",
-      repeatPassword: ""
+      username: ["",Validators.required],
+      password: ["",Validators.required],
+      repeatPassword: ["",Validators.required],
     });
   }
 
@@ -45,17 +45,17 @@ export class RegisterComponent implements OnInit {
       username: registrationForm.value.username,
       password: registrationForm.value.password,
     }
-    // this.userService.addUser(users).subscribe(
-    //   data=>{alert("Added user successfully.")
-    //     console.log(data);},
-    //   err=>{console.log(err)},
-    //   ()=>{}
-    // );
-    this.userService.registerUser(users).then(data=>{
-      console.log("Registered User",data)
-      this.credentials = data;
-      this.hasSuccess = true
-    });
+    this.userService.addUser(users).subscribe(
+      data=>{alert("Added user successfully.")
+        console.log(data);},
+      err=>{console.log(err)},
+      ()=>{}
+    );
+    // this.userService.registerUser(users).then(data=>{
+    //   console.log("Registered User",data)
+    //   this.credentials = data;
+    //   this.hasSuccess = true
+    // });
   
   }
 

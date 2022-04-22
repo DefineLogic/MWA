@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../authentication.service';
 import { SitcomsDataService } from '../sitcoms-data-service.service';
 
 export class Sitcom {
@@ -34,11 +35,13 @@ export class Sitcom {
 })
 export class SitcomsComponent implements OnInit {
 
-
+  isLoggedIn(){
+    return this._authService.isLoggedIn;
+  }
   sitcoms !: Sitcom[];
   searchText!:string;
 
-  constructor(private sitcomService:SitcomsDataService) { }
+  constructor(private sitcomService:SitcomsDataService,private _authService:AuthenticationService) { }
 
   ngOnInit(): void {
     this.getSitcoms();
